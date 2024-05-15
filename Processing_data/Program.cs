@@ -16,7 +16,7 @@ StatsBucket statsBucket = new StatsBucket();
 
 foreach (DataValue dataValue in data)
 {
-    Coordinate coordinate = new Coordinate(Math.Round(dataValue.Latitude, 2), Math.Round(dataValue.Longitude, 2));
+    Coordinate coordinate = new Coordinate(dataValue.Latitude,dataValue.Longitude);
     statsBucket.AddData(coordinate, dataValue.Value);
 }
 

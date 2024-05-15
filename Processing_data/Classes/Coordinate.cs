@@ -9,7 +9,7 @@ namespace Processing_data.Classes
     /// <summary>
     /// Represents a geographical coordinate
     /// </summary>
-    public struct Coordinate: IEquatable<Coordinate>, IComparable<Coordinate>
+    public struct Coordinate
     {
         public double Latitude { get; set; }
         public double Longitude { get; set; }
@@ -18,25 +18,6 @@ namespace Processing_data.Classes
         {
             Latitude = latitude;
             Longitude = longitude;
-        }
-
-        public override int GetHashCode()
-        {
-            return Latitude.GetHashCode() ^ Longitude.GetHashCode();
-        }
-
-        public bool Equals(Coordinate other)
-        {
-            return Latitude == other.Latitude && Longitude == other.Longitude;
-        }
-
-        public int CompareTo(Coordinate other)
-        {
-            if (Latitude == other.Latitude)
-            {
-                return Longitude.CompareTo(other.Longitude);
-            }
-            return Latitude.CompareTo(other.Latitude);
         }
     }
 }

@@ -22,6 +22,10 @@ namespace Processing_data.Classes
             }
         }
 
+        public StatsBucket() : base(new CustomEqualityComparer())
+        {
+        }
+
         /// <summary>
         /// Prints the statistics for each coordinate in the bucket
         /// </summary>
@@ -33,7 +37,7 @@ namespace Processing_data.Classes
                 if (pair.Value.GetDataCount() < 100)
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("Data is not enough to calculate the minimum value");
+                    Console.WriteLine("Data is not enough to calculate values");
                     Console.ResetColor();
                     continue;
                 }
