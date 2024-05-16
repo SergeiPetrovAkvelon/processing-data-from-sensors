@@ -1,3 +1,5 @@
+using Processing_data.Interfaces;
+
 namespace Processing_data.Classes
 {
     /// <summary>
@@ -5,6 +7,7 @@ namespace Processing_data.Classes
     /// </summary>
     public class StatsBucket : Dictionary<Coordinate, Statistics>
     {
+        private IPrint _printingService;
         /// <summary>
         /// Adds a data value to the statistics bucket
         /// </summary>
@@ -22,8 +25,9 @@ namespace Processing_data.Classes
             }
         }
 
-        public StatsBucket() : base(new CustomEqualityComparer())
+        public StatsBucket(IPrint printingService) : base(new CustomEqualityComparer())
         {
+            _printingService = printingService;
         }
 
         /// <summary>
@@ -31,22 +35,7 @@ namespace Processing_data.Classes
         /// </summary>
         public void PrintStats()
         {
-            foreach (KeyValuePair<Coordinate, Statistics> pair in this)
-            {
-                Console.WriteLine($"Coordinate: {pair.Key.Latitude}, {pair.Key.Longitude}. Data: {pair.Value.GetDataCount()} values.");
-                if (pair.Value.GetDataCount() < 100)
-                {
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("Data is not enough to calculate values");
-                    Console.ResetColor();
-                    continue;
-                }
-                Console.WriteLine($"Min: {pair.Value.MIN}");
-                Console.WriteLine($"Max: {pair.Value.MAX}");
-                Console.WriteLine($"AVG: {pair.Value.AVG}");
-                Console.WriteLine($"STD: {pair.Value.STD}");
-                Console.WriteLine();
-            }
+           _printingService.Print(this);
         }
     }
 }

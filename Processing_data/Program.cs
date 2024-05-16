@@ -11,12 +11,12 @@ if (data == null)
     Console.WriteLine("Failed to deserialize the JSON data");
     return;
 }
-
-StatsBucket statsBucket = new StatsBucket();
+PrintingStatsService printingService = new PrintingStatsService();
+StatsBucket statsBucket = new StatsBucket(printingService);
 
 foreach (DataValue dataValue in data)
 {
-    Coordinate coordinate = new Coordinate(dataValue.Latitude,dataValue.Longitude);
+    Coordinate coordinate = new Coordinate() { Latitude = dataValue.Latitude, Longitude = dataValue.Longitude };
     statsBucket.AddData(coordinate, dataValue.Value);
 }
 
