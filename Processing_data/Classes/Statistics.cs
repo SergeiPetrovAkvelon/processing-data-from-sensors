@@ -12,55 +12,11 @@ namespace Processing_data.Classes
     /// </summary>
     public class Statistics
     {
-        private double _max;
-        private double _min;
-        private double _avg;
-        private double _std;
-        public double MAX
-        {
-            get
-            {
-                return _max;
-            }
-            set
-            {
-                _max = value;
-            }
-        }
-        public double MIN
-        {
-            get
-            {
-                return _min;
-            }
-            set
-            {
-                _min = value;
+        public double MAX { get; set; }
+        public double MIN { get; set; }
+        public double AVG { get; set; }
 
-            }
-        }
-        public double AVG
-        {
-            get
-            {
-                return _avg;
-            }
-            set
-            {
-                _avg = value;
-            }
-        }
-        public double STD
-        {
-            get
-            {
-                return _std;
-            }
-            set
-            {
-                _std = value;
-            }
-        }
+        public double STD { get; set; }
 
         private List<double> data;
 
@@ -85,34 +41,19 @@ namespace Processing_data.Classes
         /// </summary>
         private void Calculate()
         {
-            double sum = 0;
-            double sum2 = 0;
-
-            if (data.Count > 0)
+            if (data.Count == 0)
             {
-                _max = data[0];
-                _min = data[0];
+                MAX = 0;
+                MIN = 0;
+                AVG = 0;
+                STD = 0;
+                return;
             }
 
-            foreach (var item in data)
-            {
-                if (item > _max)
-                {
-                    _max = item;
-                }
-
-                if (item < _min)
-                {
-                    _min = item;
-                }
-
-                sum += item;
-                sum2 += item * item;
-            }
-
-            _avg = sum / data.Count;
-
-            _std = Math.Sqrt(sum2 / data.Count - _avg * _avg);
+            MAX = data.Max();
+            MIN = data.Min();
+            AVG = data.Average();
+            STD = Math.Sqrt(data.Average(v => Math.Pow(v - AVG, 2)));
         }
 
         /// <summary>

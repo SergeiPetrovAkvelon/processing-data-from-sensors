@@ -12,7 +12,7 @@ if (data == null)
     return;
 }
 PrintingStatsService printingService = new PrintingStatsService();
-StatsBucket statsBucket = new StatsBucket(printingService);
+StatsBucket statsBucket = new StatsBucket(printingService, 5);
 
 foreach (DataValue dataValue in data)
 {
@@ -21,5 +21,3 @@ foreach (DataValue dataValue in data)
 }
 
 statsBucket.PrintStats();
-
-

@@ -2,7 +2,7 @@ using Processing_data.Interfaces;
 
 namespace Processing_data.Classes
 {
-    public class PrintingStatsService : IPrint
+    public class PrintingStatsService : IPrinter
     {
         public void Print(StatsBucket statsBucket)
         {
