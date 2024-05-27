@@ -1,18 +1,18 @@
-using Processing_data.Interfaces;
+using Processing_data.Classes;
 
-namespace Processing_data.Classes
+namespace Processing_data
 {
-    public class PrintingStatsService : IPrinter
+    public class PrintingStatsService
     {
-        public void Print(StatsBucket statsBucket)
+        public static void Print(StatsBucket statsBucket)
         {
             foreach (KeyValuePair<Coordinate, Statistics> pair in statsBucket)
             {
                 Console.WriteLine($"Coordinate: {pair.Key.Latitude}, {pair.Key.Longitude}. Data: {pair.Value.GetDataCount()} values.");
-                Console.WriteLine($"Min: {pair.Value.MIN}");
-                Console.WriteLine($"Max: {pair.Value.MAX}");
-                Console.WriteLine($"AVG: {pair.Value.AVG}");
-                Console.WriteLine($"STD: {pair.Value.STD}");
+                Console.WriteLine($"Min: {pair.Value.Min}");
+                Console.WriteLine($"Max: {pair.Value.Max}");
+                Console.WriteLine($"Avg: {pair.Value.Avg}");
+                Console.WriteLine($"Std: {pair.Value.Std}");
                 Console.WriteLine();
             }
         }

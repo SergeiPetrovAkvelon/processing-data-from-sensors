@@ -1,24 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Processing_data.Classes
+﻿namespace Processing_data.Classes
 {
     /// <summary>
     /// Represents statistics for a set of data
     /// </summary>
     public class Statistics
     {
-        public double MAX { get; set; }
-        public double MIN { get; set; }
-        public double AVG { get; set; }
+        public double Max { get; private set; }
+        public double Min { get; private set; }
+        public double Avg { get; private set; }
+        public double Std { get; private set; }
 
-        public double STD { get; set; }
-
-        private List<double> data;
+        private readonly List<double> data;
 
         public Statistics(List<double> data)
         {
@@ -43,17 +35,17 @@ namespace Processing_data.Classes
         {
             if (data.Count == 0)
             {
-                MAX = 0;
-                MIN = 0;
-                AVG = 0;
-                STD = 0;
+                Max = 0;
+                Min = 0;
+                Avg = 0;
+                Std = 0;
                 return;
             }
 
-            MAX = data.Max();
-            MIN = data.Min();
-            AVG = data.Average();
-            STD = Math.Sqrt(data.Average(v => Math.Pow(v - AVG, 2)));
+            Max = data.Max();
+            Min = data.Min();
+            Avg = data.Average();
+            Std = Math.Sqrt(data.Average(v => Math.Pow(v - Avg, 2)));
         }
 
         /// <summary>

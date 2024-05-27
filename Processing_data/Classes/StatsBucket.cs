@@ -1,5 +1,3 @@
-using Processing_data.Interfaces;
-
 namespace Processing_data.Classes
 {
     /// <summary>
@@ -7,7 +5,6 @@ namespace Processing_data.Classes
     /// </summary>
     public class StatsBucket : Dictionary<Coordinate, Statistics>
     {
-        private IPrinter _printingService;
         /// <summary>
         /// Adds a data value to the statistics bucket
         /// </summary>
@@ -25,21 +22,11 @@ namespace Processing_data.Classes
             }
         }
 
-        public StatsBucket(IPrinter printingService, int capacity) : base(capacity, new CustomEqualityComparer())
+        public StatsBucket(int capacity) : base(capacity, new CustomEqualityComparer())
         {
-            _printingService = printingService;
         }
-
-        public StatsBucket(IPrinter printingService) : base(new CustomEqualityComparer())
+        public StatsBucket() : base(new CustomEqualityComparer())
         {
-            _printingService = printingService;
-        }
-        /// <summary>
-        /// Prints the statistics for each coordinate in the bucket
-        /// </summary>
-        public void PrintStats()
-        {
-            _printingService.Print(this);
         }
     }
 }
